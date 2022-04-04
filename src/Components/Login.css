@@ -1,0 +1,17 @@
+.form-control {
+  display: flex;
+
+  height: 4rem;
+  padding: 1rem;
+  background-color: white;
+  color: black;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control input {
+  width: 10rem;
+  height: 2rem;
+  margin: 1rem;
+}

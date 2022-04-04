@@ -1,0 +1,44 @@
+header {
+  color: rgb(99, 99, 95);
+  height: 6rem;
+  background-color: #f4f1ea;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  margin: 0;
+  justify-content: start;
+  align-items: center;
+  padding: none;
+}
+
+header a {
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+}
+
+header a:hover {
+  background-color: rgb(173, 166, 150);
+}
+a img {
+  height: 3rem;
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+header button {
+  background-color: #c4bdab;
+  border: none;
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: rgb(99, 99, 95);
+  margin-top: 1rem;
+  border-radius: 10px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+header button:hover {
+  background-color: rgb(173, 166, 150);
+  cursor: pointer;
+}

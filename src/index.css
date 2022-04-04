@@ -1,11 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: "open sans";
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
 body {

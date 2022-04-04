@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Fragment, useState } from "react";
+import Card from "./UI/Card";
+import "./Login.css";
 
 const Login = () => {
   const [showLogin, setShowLogin] = useState(true);
@@ -39,37 +41,39 @@ const Login = () => {
 
   let disp = showLogin ? (
     <Fragment>
-      <form /*className="form-inline"*/ onSubmit={loginFormHandler}>
-        <label htmlFor="username">Username</label>
+      <form onSubmit={loginFormHandler}>
+        <Card>
+          <label htmlFor="username">Username</label>
 
-        <input
-          type="text"
-          id="username"
-          placeholder="Enter Username"
-          onChange={(e) => {
-            setLoginData({
-              password: loginData.password,
-              userName: e.target.value,
-            });
-          }}
-          value={loginData.userName}
-        ></input>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter Username"
+            onChange={(e) => {
+              setLoginData({
+                password: loginData.password,
+                userName: e.target.value,
+              });
+            }}
+            value={loginData.userName}
+          ></input>
 
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          onChange={(e) => {
-            setLoginData({
-              password: e.target.value,
-              userName: loginData.userName,
-            });
-          }}
-          value={loginData.password}
-        ></input>
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            onChange={(e) => {
+              setLoginData({
+                password: e.target.value,
+                userName: loginData.userName,
+              });
+            }}
+            value={loginData.password}
+          ></input>
 
-        <button disabled={!loginIsValid}>Submit</button>
+          <button disabled={!loginIsValid}>Submit</button>
+        </Card>
       </form>
     </Fragment>
   ) : (
