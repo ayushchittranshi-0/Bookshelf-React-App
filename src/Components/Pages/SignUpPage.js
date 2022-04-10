@@ -3,25 +3,25 @@ import "./LoginSignupPage.css";
 import Card from "../UI/Card";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   let navigate = useNavigate();
 
   return (
     <form>
       <Card className="form-container">
-        <h1>Login</h1>
+        <h1>Signup</h1>
         <label htmlFor="userName">Username : </label>
         <input type="text" id="userName"></input>
         <label htmlFor="password">Password :</label>
         <input type="password" id="password"></input>
         <p>
-          New User? Click to{" "}
+          Already registered? Click to{" "}
           <span
             onClick={() => {
               navigate("/");
             }}
           >
-            Sign Up.
+            Login
           </span>
         </p>
       </Card>
@@ -29,4 +29,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

@@ -1,12 +1,9 @@
 import React, { Fragment, useState } from "react";
 import "./App.css";
 import NavBar from "./Components/Navbar.js";
-import { Route } from "react-router-dom";
-import Login from "./Components/Login.js";
-import AddBook from "./Components/AddBook.js";
-import SearchBooks from "./Components/SearchBooks.js";
-import Card from "./Components/UI/Card.js";
+import { Route, Routes } from "react-router-dom";
 import LoginPage from "./Components/Pages/LoginPage";
+import SignUpPage from "./Components/Pages/SignUpPage";
 import HomePage from "./Components/Pages/HomePage.js";
 
 function App() {
@@ -15,12 +12,11 @@ function App() {
   return (
     <Fragment>
       <NavBar setLoginstate={setLoginstate} />
-      <Route path="/">
-        <HomePage />
-      </Route>
-      <Route path="/login">
-        <LoginPage />
-      </Route>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
     </Fragment>
   );
 }

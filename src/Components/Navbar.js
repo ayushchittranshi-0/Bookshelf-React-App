@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import "./NavBar.css";
-import LoginPage from "./Pages/LoginPage.js";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ setLoginstate }) => {
   const loginClickHandler = () => {
@@ -11,17 +11,17 @@ const Navbar = ({ setLoginstate }) => {
   return (
     <Fragment>
       <header>
-        <a href="#">
+        <Link to="/" className="logo">
           <img
             src="https://cdn.pixabay.com/photo/2019/06/13/07/23/black-and-white-4270982__340.png"
             alt="logo"
           />
           THE BOOKSHELF
-        </a>
-        {/* add router and change login state */}
-        <button onClick={loginClickHandler}>Login</button>
+        </Link>
+        <NavLink to="/login" className="navbarLink">
+          Login/Signup
+        </NavLink>
       </header>
-      <LoginPage></LoginPage>
     </Fragment>
   );
 };

@@ -8,5 +8,9 @@ html {
 
 body {
   margin: 0px;
-  background-color: white;
+  background-color: #dddddc;
+}
+
+#root {
+  margin: 0px;
 }

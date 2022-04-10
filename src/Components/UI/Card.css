@@ -1,9 +1,6 @@
 .Card {
   outline: black 2px;
-  margin: auto;
   max-width: 90%;
   min-height: 30px;
   border-radius: 5px;
-  box-shadow: 2px 5px 20px grey;
-  background: aliceblue;
 }
