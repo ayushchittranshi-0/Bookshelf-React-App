@@ -2,13 +2,66 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-top: 8rem;
+  margin-top: 13rem;
   padding: 2rem 3rem 2rem 3rem;
-  width: 30%;
+  width: 450px;
   border-radius: 4px;
   box-shadow: 0 1px 1px #7b7b7a;
   color: #3f4139;
   background-color: #fbfaf7;
+  position: relative;
+}
+
+.loginSignup {
+  position: absolute;
+  top: -130px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
+  display: block;
+  text-align: center;
+  padding: 15px 5px;
+  border: 1px solid;
+  border-color: white;
+  border-radius: 5px;
+  transition: opacity 1s, top 1s;
+  background-color: #e9eadf;
+}
+
+.loginSignup h2 {
+  font-size: 1.5rem;
+  padding-top: 0.7rem;
+  font-weight: 100;
+  font-family: "Merriweather", Georgia, "Times New Roman", serif;
+  float: left;
+  margin: 0rem 1rem 0rem 1rem;
+  margin-right: 2rem;
+}
+
+.loginSignup img {
+  float: left;
+  margin-left: 2rem;
+  height: 3rem;
+  width: 3rem;
+}
+
+.loginSignup.success {
+  opacity: 1;
+  top: -100px;
+  color: green;
+}
+
+.loginSignup.fail {
+  opacity: 1;
+  top: -100px;
+  color: red;
+}
+
+.loginSignupFail {
+  position: absolute;
+  top: -100px;
+  left: 70px;
+  text-align: center;
 }
 
 .form-container label {
@@ -40,4 +93,28 @@ p span {
 p span:hover {
   background-color: #918e81;
   cursor: pointer;
+}
+
+.form-container button {
+  margin: auto;
+  height: 2rem;
+  width: 5rem;
+  background-color: #e1dfc4;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border-color: #b9b798;
+  border-width: 0.15px;
+}
+.form-container button:hover {
+  background-color: #c5c18b;
+  cursor: pointer;
+}
+
+.error {
+  border: none;
+  outline: none;
+  color: red;
+  text-align: left;
+  margin-top: 1rem;
 }

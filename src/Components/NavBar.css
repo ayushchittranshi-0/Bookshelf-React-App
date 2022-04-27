@@ -7,7 +7,7 @@ header {
   margin: 0px;
   justify-content: flex-start;
   align-items: center;
-  padding: none;
+  padding: 0;
 }
 
 header a {
