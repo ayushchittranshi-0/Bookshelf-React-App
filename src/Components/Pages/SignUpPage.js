@@ -7,12 +7,14 @@ import {
   emailValidation,
   passwordValidation,
 } from "../../Components/Helpers/Regex.js";
+import greenImg from "../../Images/icons8-green-circle-48.png";
+import redImg from "../../Images/icons8-red-circle-48.png";
 
 const SignUpPage = () => {
   const [signUpState, setSignUpState] = useState({
-    email: null,
-    username: null,
-    password: null,
+    email: "",
+    username: "",
+    password: "",
   });
   let navigate = useNavigate();
   const [error, setError] = useState("");
@@ -88,6 +90,22 @@ const SignUpPage = () => {
     console.log(response.ok);
     response.ok && setSuccessState("loginSignup success");
     !response.ok && setSuccessState("loginSignup fail");
+    if (response.ok) {
+      let response2 = await fetch(
+        "https://bookshelf-project-345913-default-rtdb.asia-southeast1.firebasedatabase.app/userDatabase.json",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: signUpState.email,
+            username: signUpState.username,
+            bookList: {},
+          }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      console.log(response2);
+    }
+    setSignUpState({ email: "", username: "", password: "" });
   };
 
   useEffect(() => {
@@ -99,26 +117,41 @@ const SignUpPage = () => {
   return (
     <form onSubmit={SignupSubmitHandler}>
       <Card className="form-container">
-        <h2 className={successState}>
-          {successState === "loginSignup success"
-            ? "Signup Successful"
-            : "Hello"}
-          {successState === "loginSignup fail" ? "Something went wrong" : ""}
-        </h2>
+        <div className={successState}>
+          <img
+            src={successState === "loginSignup success" ? greenImg : redImg}
+            alt="red/green circle"
+          />
+          <h2>
+            {successState === "loginSignup success"
+              ? "Signup Successful"
+              : successState === "loginSignup fail"
+              ? "Something went wrong"
+              : "Status Unknown"}{" "}
+          </h2>
+        </div>
+
         <h1>Signup</h1>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" onChange={emailInputHandler} />
+        <input
+          type="email"
+          value={signUpState.email}
+          id="email"
+          onChange={emailInputHandler}
+        />
         <label htmlFor="userName">Username : </label>
         <input
           type="text"
           id="userName"
           onChange={usernameInputHandler}
+          value={signUpState.username}
         ></input>
         <label htmlFor="password">Password :</label>
         <input
           type="password"
           id="password"
           onChange={passwordInputHandler}
+          value={signUpState.password}
         ></input>
         <button disabled={!submitValid}>Submit</button>
         {error && <span className="error">{error}</span>}

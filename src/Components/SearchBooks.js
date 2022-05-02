@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./SearchBooks.css";
+import BookItem from "./BookItem.js";
 
 const SearchBooks = () => {
-  const [bookInput, setBookInput] = useState("Ayush");
+  const [bookInput, setBookInput] = useState("");
+  const [searchData, setSearchData] = useState("");
 
   const GOOGLE_API_KEY = "AIzaSyBN4j6yCYLRBWpikfZ-sK-_SlF72wgH_Ns";
   const BOOK_API = "https://www.googleapis.com/books/v1/volumes?q=";
@@ -13,13 +15,13 @@ const SearchBooks = () => {
 
   const searchClickHandler = async () => {
     const response = await fetch(
-      `${BOOK_API}${bookInput}&key=${GOOGLE_API_KEY}`
+      `${BOOK_API}${bookInput}&key=${GOOGLE_API_KEY}&maxResults=20`
     );
-
-    console.log(`${BOOK_API}${bookInput}&key=${GOOGLE_API_KEY}`);
-
-    const data = await response.json();
-    console.log(data);
+    let data = "";
+    response.ok && (data = await response.json());
+    console.log(data.items);
+    setSearchData(data.items);
+    setBookInput("");
   };
 
   return (
@@ -31,6 +33,17 @@ const SearchBooks = () => {
         value={bookInput}
       ></input>
       <button onClick={searchClickHandler}>Search</button>
+
+      {searchData &&
+        searchData.map((book) => {
+          return (
+            <BookItem
+              title={book.volumeInfo.title}
+              key={book.volumeInfo.title + book.volumeInfo.publishedDate}
+              imgLink={book.volumeInfo.imageLinks.thumbnail}
+            />
+          );
+        })}
     </div>
   );
 };

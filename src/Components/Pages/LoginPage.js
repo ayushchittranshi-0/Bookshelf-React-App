@@ -11,8 +11,8 @@ import greenImg from "../../Images/icons8-green-circle-48.png";
 
 const LoginPage = () => {
   const [loginState, setLoginState] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
   let navigate = useNavigate();
   const [error, setError] = useState("");
@@ -72,9 +72,10 @@ const LoginPage = () => {
         headers: { "Content-Type": "application/json" },
       }
     );
-    console.log(response.ok);
+    console.log(response);
     response.ok && setSuccessState("loginSignup success");
     !response.ok && setSuccessState("loginSignup fail");
+    setLoginState({ email: "", password: "" });
   };
 
   useEffect(() => {
@@ -87,23 +88,33 @@ const LoginPage = () => {
     <form onSubmit={LoginSubmitHandler}>
       <Card className="form-container">
         <div className={successState}>
-          <img src={redImg} alt="red circle" />
+          <img
+            src={successState === "loginSignup success" ? greenImg : redImg}
+            alt="red/green circle"
+          />
           <h2>
             {successState === "loginSignup success"
               ? "Login Successful"
-              : "Hello"}
-            {successState === "loginSignup fail" ? "Something went wrong" : ""}
+              : successState === "loginSignup fail"
+              ? "Something went wrong"
+              : "Status Unknown"}{" "}
           </h2>
         </div>
         <h1>Login</h1>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" onChange={emailInputHandler} />
+        <input
+          type="email"
+          id="email"
+          onChange={emailInputHandler}
+          value={loginState.email}
+        />
 
         <label htmlFor="password">Password :</label>
         <input
           type="password"
           id="password"
           onChange={passwordInputHandler}
+          value={loginState.password}
         ></input>
         <button disabled={!submitValid}>Submit</button>
         {error && <span className="error">{error}</span>}

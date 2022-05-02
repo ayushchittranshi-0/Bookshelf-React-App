@@ -18,6 +18,9 @@ const Navbar = ({ setLoginstate }) => {
           />
           THE BOOKSHELF
         </Link>
+        <NavLink to="/searchbooks" className="navbarLink">
+          SearchBooks
+        </NavLink>
         <NavLink to="/login" className="navbarLink">
           Login/Signup
         </NavLink>
