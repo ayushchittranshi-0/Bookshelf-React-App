@@ -2,16 +2,16 @@ import React from "react";
 
 const BookItem = ({ title, imgLink, isLogin, loginDbKey, volumeId }) => {
   const addBookHandler = async () => {
+    console.log(loginDbKey, "    ", volumeId);
+    let Bookobj = {};
+    Bookobj[volumeId] = false;
     const response = await fetch(
-      "https://bookshelf-project-345913-default-rtdb.asia-southeast1.firebasedatabase.app/userDatabase" +
+      "https://bookshelf-project-345913-default-rtdb.asia-southeast1.firebasedatabase.app/userDatabase/" +
         loginDbKey +
-        ".json",
+        "/BookList.json",
       {
-        method: "POST",
-        body: JSON.stringify({
-          volumeId: volumeId,
-          completed: false,
-        }),
+        method: "PATCH",
+        body: JSON.stringify(Bookobj),
         headers: { "Content-Type": "application/json" },
       }
     );

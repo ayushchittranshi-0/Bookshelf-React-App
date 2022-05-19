@@ -13,24 +13,23 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [loginDbKey, setLoginDbKey] = useState("");
 
-  const findkey = async (email) => {
-    if (email) {
-      const response = await fetch(
-        "https://bookshelf-project-345913-default-rtdb.asia-southeast1.firebasedatabase.app/userDatabase.json"
-      );
-      const data = await response.json();
-      for (const key in data) {
-        if (data[key].email === email) {
-          console.log(key);
-          return key;
+  useEffect(() => {
+    setLoginDbKey("");
+    const findkey = async (email) => {
+      if (email) {
+        const response = await fetch(
+          "https://bookshelf-project-345913-default-rtdb.asia-southeast1.firebasedatabase.app/userDatabase.json"
+        );
+        const data = await response.json();
+        for (const key in data) {
+          if (data[key].email === email) {
+            console.log(key);
+            setLoginDbKey(key);
+          }
         }
       }
-      return "";
-    }
-  };
-
-  useEffect(() => {
-    setLoginDbKey(findkey(userEmail));
+    };
+    findkey(userEmail);
   }, [userEmail]);
 
   useEffect(() => {

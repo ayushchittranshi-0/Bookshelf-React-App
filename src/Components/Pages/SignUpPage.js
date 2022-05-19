@@ -97,7 +97,7 @@ const SignUpPage = ({ setIsLogin, setUserEmail }) => {
           method: "POST",
           body: JSON.stringify({
             email: signUpState.email,
-            bookList: {},
+            username: signUpState.username,
           }),
           headers: { "Content-Type": "application/json" },
         }
