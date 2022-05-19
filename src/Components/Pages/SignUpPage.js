@@ -10,7 +10,7 @@ import {
 import greenImg from "../../Images/icons8-green-circle-48.png";
 import redImg from "../../Images/icons8-red-circle-48.png";
 
-const SignUpPage = () => {
+const SignUpPage = ({ setIsLogin, setUserEmail }) => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -97,7 +97,6 @@ const SignUpPage = () => {
           method: "POST",
           body: JSON.stringify({
             email: signUpState.email,
-            username: signUpState.username,
             bookList: {},
           }),
           headers: { "Content-Type": "application/json" },
@@ -106,6 +105,10 @@ const SignUpPage = () => {
       console.log(response2);
     }
     setSignUpState({ email: "", username: "", password: "" });
+    response.ok && setIsLogin(true);
+    response.ok && localStorage.setItem("email", signUpState.email);
+    setUserEmail(signUpState.email);
+    response.ok && navigate("/userlibrary");
   };
 
   useEffect(() => {

@@ -2,10 +2,17 @@ import React, { Fragment } from "react";
 import "./NavBar.css";
 import { NavLink, Link } from "react-router-dom";
 
-const Navbar = ({ setLoginstate }) => {
+const Navbar = ({
+  userEmail,
+  isLogin,
+  setIsLogin,
+  setLoginDbKey,
+  setUserEmail,
+}) => {
   const loginClickHandler = () => {
+    // userlibrary;
     //Do something
-    console.log(setLoginstate);
+    // console.log(setLoginstate);
   };
 
   return (
@@ -21,9 +28,31 @@ const Navbar = ({ setLoginstate }) => {
         <NavLink to="/searchbooks" className="navbarLink">
           SearchBooks
         </NavLink>
-        <NavLink to="/login" className="navbarLink">
-          Login/Signup
-        </NavLink>
+
+        {isLogin && (
+          <NavLink to="/userlibrary" className="navbarLink">
+            User Library
+          </NavLink>
+        )}
+        {!isLogin && (
+          <NavLink to="/login" className="navbarLink">
+            Login/Signup
+          </NavLink>
+        )}
+        {isLogin && (
+          <button
+            className="navbarLink"
+            onClick={() => {
+              setIsLogin(false);
+              setLoginDbKey("");
+              setUserEmail("");
+              localStorage.removeItem("email");
+            }}
+          >
+            Logout
+          </button>
+        )}
+        {isLogin && <p>Hello {userEmail}</p>}
       </header>
     </Fragment>
   );

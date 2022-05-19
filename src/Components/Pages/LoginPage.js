@@ -9,7 +9,7 @@ import {
 import redImg from "../../Images/icons8-red-circle-48.png";
 import greenImg from "../../Images/icons8-green-circle-48.png";
 
-const LoginPage = () => {
+const LoginPage = ({ setUserEmail, setIsLogin, isLogin }) => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -75,7 +75,11 @@ const LoginPage = () => {
     console.log(response);
     response.ok && setSuccessState("loginSignup success");
     !response.ok && setSuccessState("loginSignup fail");
-    setLoginState({ email: "", password: "" });
+    response.ok && setUserEmail(loginState.email);
+    response.ok && setIsLogin(true);
+    response.ok && localStorage.setItem("email", loginState.email);
+    response.ok && setLoginState({ email: "", password: "" });
+    response.ok && navigate("/userlibrary");
   };
 
   useEffect(() => {
