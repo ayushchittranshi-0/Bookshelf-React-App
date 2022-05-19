@@ -14,10 +14,6 @@ const SearchBooks = ({ isLogin, loginDbKey }) => {
     setBookInput(e.target.value);
   };
 
-  const addBookHandler = async () => {
-    // const response
-  };
-
   const searchClickHandler = async () => {
     setIsLoading("yes");
     setSearchData([]);

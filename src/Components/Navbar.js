@@ -3,11 +3,12 @@ import "./NavBar.css";
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({
-  userEmail,
   isLogin,
   setIsLogin,
   setLoginDbKey,
   setUserEmail,
+  username,
+  setUsername,
 }) => {
   const loginClickHandler = () => {
     // userlibrary;
@@ -46,13 +47,14 @@ const Navbar = ({
               setIsLogin(false);
               setLoginDbKey("");
               setUserEmail("");
+              setUsername("");
               localStorage.removeItem("email");
             }}
           >
             Logout
           </button>
         )}
-        {isLogin && <p>Hello {userEmail}</p>}
+        {isLogin && <p>Hello {username}</p>}
       </header>
     </Fragment>
   );

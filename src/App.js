@@ -11,6 +11,7 @@ import UserBookData from "./Components/Pages/UserBookData";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [loginDbKey, setLoginDbKey] = useState("");
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
           if (data[key].email === email) {
             console.log(key);
             setLoginDbKey(key);
+            setUsername(data[key].username);
           }
         }
       }
@@ -43,10 +45,11 @@ function App() {
     <Fragment>
       <NavBar
         isLogin={isLogin}
-        userEmail={userEmail}
         setIsLogin={setIsLogin}
         setLoginDbKey={setLoginDbKey}
         setUserEmail={setUserEmail}
+        username={username}
+        setUsername={setUsername}
       />
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
@@ -74,7 +77,12 @@ function App() {
             }
           />
         )}
-        {isLogin && <Route path="/userlibrary" element={<UserBookData />} />}
+        {isLogin && (
+          <Route
+            path="/userlibrary"
+            element={<UserBookData loginDbKey={loginDbKey} />}
+          />
+        )}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Fragment>

@@ -79,7 +79,9 @@ const LoginPage = ({ setUserEmail, setIsLogin, isLogin }) => {
     response.ok && setIsLogin(true);
     response.ok && localStorage.setItem("email", loginState.email);
     response.ok && setLoginState({ email: "", password: "" });
-    response.ok && navigate("/userlibrary");
+    setTimeout(() => {
+      response.ok && navigate("/userlibrary");
+    }, 500);
   };
 
   useEffect(() => {
