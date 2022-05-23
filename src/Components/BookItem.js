@@ -1,6 +1,7 @@
 import React from "react";
+import "./BookItem.css";
 
-const BookItem = ({ title, imgLink, isLogin, loginDbKey, volumeId }) => {
+const BookItem = ({ title, imgLink, isLogin, loginDbKey, volumeId, blurb }) => {
   const addBookHandler = async () => {
     console.log(loginDbKey, "    ", volumeId);
     let Bookobj = {};
@@ -20,10 +21,13 @@ const BookItem = ({ title, imgLink, isLogin, loginDbKey, volumeId }) => {
   return (
     <div className="bookbox">
       <img src={imgLink} alt="bookimg" />
-      <p>{title}</p>
-      <button onClick={addBookHandler} disabled={!isLogin}>
-        Add Book
-      </button>
+      <div className="bookbox-right">
+        <p className="book-title">{title}</p>
+        <p className="blurb">{blurb}</p>
+        <button onClick={addBookHandler} disabled={!isLogin}>
+          Add to Library
+        </button>
+      </div>
     </div>
   );
 };

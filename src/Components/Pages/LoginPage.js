@@ -28,7 +28,11 @@ const LoginPage = ({ setUserEmail, setIsLogin, isLogin }) => {
       }
       if (loginState.password) {
         if (!passwordValidation(loginState.password))
-          setError((prevState) => prevState + " Password is invalid. ");
+          setError(
+            (prevState) =>
+              prevState +
+              "Password must be atleast 8 characters.It can only consit of numbers and letters and must contain atleast one of both. "
+          );
       }
     }, 500);
 
@@ -91,51 +95,54 @@ const LoginPage = ({ setUserEmail, setIsLogin, isLogin }) => {
   }, [successState]);
 
   return (
-    <form onSubmit={LoginSubmitHandler}>
-      <Card className="form-container">
-        <div className={successState}>
-          <img
-            src={successState === "loginSignup success" ? greenImg : redImg}
-            alt="red/green circle"
+    <div className="formOuterContainer">
+      {" "}
+      <form onSubmit={LoginSubmitHandler}>
+        <Card className="form-container">
+          <div className={successState}>
+            <img
+              src={successState === "loginSignup success" ? greenImg : redImg}
+              alt="red/green circle"
+            />
+            <h2>
+              {successState === "loginSignup success"
+                ? "Login Successful"
+                : successState === "loginSignup fail"
+                ? "Something went wrong"
+                : "Status Unknown"}{" "}
+            </h2>
+          </div>
+          <h1>Login</h1>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            onChange={emailInputHandler}
+            value={loginState.email}
           />
-          <h2>
-            {successState === "loginSignup success"
-              ? "Login Successful"
-              : successState === "loginSignup fail"
-              ? "Something went wrong"
-              : "Status Unknown"}{" "}
-          </h2>
-        </div>
-        <h1>Login</h1>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          onChange={emailInputHandler}
-          value={loginState.email}
-        />
 
-        <label htmlFor="password">Password :</label>
-        <input
-          type="password"
-          id="password"
-          onChange={passwordInputHandler}
-          value={loginState.password}
-        ></input>
-        <button disabled={!submitValid}>Submit</button>
-        {error && <span className="error">{error}</span>}
-        <p>
-          New User? Click to{" "}
-          <span
-            onClick={() => {
-              navigate("/signUp");
-            }}
-          >
-            Signup
-          </span>
-        </p>
-      </Card>
-    </form>
+          <label htmlFor="password">Password :</label>
+          <input
+            type="password"
+            id="password"
+            onChange={passwordInputHandler}
+            value={loginState.password}
+          ></input>
+          <button disabled={!submitValid}>Submit</button>
+          {error && <span className="error">{error}</span>}
+          <p>
+            New User? Click to{" "}
+            <span
+              onClick={() => {
+                navigate("/signUp");
+              }}
+            >
+              Signup
+            </span>
+          </p>
+        </Card>
+      </form>
+    </div>
   );
 };
 

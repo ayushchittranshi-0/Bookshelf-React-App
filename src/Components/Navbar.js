@@ -9,6 +9,7 @@ const Navbar = ({
   setUserEmail,
   username,
   setUsername,
+  setBookInput,
 }) => {
   const loginClickHandler = () => {
     // userlibrary;
@@ -26,35 +27,53 @@ const Navbar = ({
           />
           THE BOOKSHELF
         </Link>
-        <NavLink to="/searchbooks" className="navbarLink">
-          SearchBooks
-        </NavLink>
-
-        {isLogin && (
-          <NavLink to="/userlibrary" className="navbarLink">
-            User Library
-          </NavLink>
-        )}
-        {!isLogin && (
-          <NavLink to="/login" className="navbarLink">
-            Login/Signup
-          </NavLink>
-        )}
-        {isLogin && (
-          <button
-            className="navbarLink"
-            onClick={() => {
-              setIsLogin(false);
-              setLoginDbKey("");
-              setUserEmail("");
-              setUsername("");
-              localStorage.removeItem("email");
-            }}
-          >
-            Logout
-          </button>
-        )}
-        {isLogin && <p>Hello {username}</p>}
+        <div className="container">
+          <div className="username-container">
+            {isLogin && (
+              <div className="divUsername">
+                <p>Hello, {username}</p>
+              </div>
+            )}
+          </div>
+          <ul className="navbarLinkList">
+            <li>
+              <NavLink to="/searchbooks" className="navbarLink">
+                SearchBooks
+              </NavLink>
+            </li>
+            {isLogin && (
+              <li>
+                <NavLink to="/userlibrary" className="navbarLink">
+                  Library
+                </NavLink>
+              </li>
+            )}
+            {!isLogin && (
+              <li>
+                <NavLink to="/login" className="navbarLink">
+                  Login/Signup
+                </NavLink>
+              </li>
+            )}
+            {isLogin && (
+              <li>
+                <button
+                  className="navbarLink navbarLinkButton"
+                  onClick={() => {
+                    setIsLogin(false);
+                    setLoginDbKey("");
+                    setUserEmail("");
+                    setUsername("");
+                    localStorage.removeItem("email");
+                    setBookInput("");
+                  }}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
+          </ul>
+        </div>
       </header>
     </Fragment>
   );

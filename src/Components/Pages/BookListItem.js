@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-const BookListItem = ({ book, completed, loginDbKey }) => {
+const BookListItem = ({ book, completed, loginDbKey, retrieveBookList }) => {
   console.log(book, completed);
   const [bookData, setBookData] = useState("");
 
@@ -17,7 +17,7 @@ const BookListItem = ({ book, completed, loginDbKey }) => {
     getBookData();
   }, []);
 
-  const checkHandler = async () => {
+  const deleteHandler = async () => {
     console.log("clicked");
     const response = await fetch(
       "https://bookshelf-project-345913-default-rtdb.asia-southeast1.firebasedatabase.app/userDatabase/" +
@@ -30,6 +30,7 @@ const BookListItem = ({ book, completed, loginDbKey }) => {
         headers: { "Content-Type": "application/json" },
       }
     );
+    retrieveBookList();
     console.log(response.ok);
   };
 
@@ -39,7 +40,7 @@ const BookListItem = ({ book, completed, loginDbKey }) => {
       {bookData && bookData.volumeInfo.hasOwnProperty("imageLinks") && (
         <img src={bookData.volumeInfo.imageLinks.thumbnail} alt="BookIMG" />
       )}
-      <button onClick={checkHandler}>Delete from Library</button>
+      <button onClick={deleteHandler}>Delete from Library</button>
     </div>
   );
 };

@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -8,7 +10,7 @@ html {
 
 body {
   margin: 0px;
-  background-color: #dddddc;
+  background-color: #d4d1d7;
 }
 
 #root {

@@ -34,7 +34,11 @@ const SignUpPage = ({ setIsLogin, setUserEmail }) => {
       }
       if (signUpState.password) {
         if (!passwordValidation(signUpState.password))
-          setError((prevState) => prevState + " Password is invalid. ");
+          setError(
+            (prevState) =>
+              prevState +
+              "Password must be atleast 8 characters.It can only consit of numbers and letters and must contain atleast one of both. "
+          );
       }
     }, 500);
 
@@ -108,7 +112,9 @@ const SignUpPage = ({ setIsLogin, setUserEmail }) => {
     response.ok && setIsLogin(true);
     response.ok && localStorage.setItem("email", signUpState.email);
     setUserEmail(signUpState.email);
-    response.ok && navigate("/userlibrary");
+    setTimeout(() => {
+      response.ok && navigate("/userlibrary");
+    }, 500);
   };
 
   useEffect(() => {

@@ -13,6 +13,7 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [username, setUsername] = useState("");
   const [loginDbKey, setLoginDbKey] = useState("");
+  const [bookInput, setBookInput] = useState("");
 
   useEffect(() => {
     setLoginDbKey("");
@@ -39,7 +40,7 @@ function App() {
       setIsLogin(true);
       setUserEmail(localStorage.getItem("email"));
     }
-  });
+  }, []);
 
   return (
     <Fragment>
@@ -50,9 +51,10 @@ function App() {
         setUserEmail={setUserEmail}
         username={username}
         setUsername={setUsername}
+        setBookInput={setBookInput}
       />
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/" element={<HomePage isLogin={isLogin} />}></Route>
         {!isLogin && (
           <Route
             path="/login"
@@ -63,7 +65,14 @@ function App() {
         )}
         <Route
           path="/searchbooks"
-          element={<SearchBooks isLogin={isLogin} loginDbKey={loginDbKey} />}
+          element={
+            <SearchBooks
+              isLogin={isLogin}
+              loginDbKey={loginDbKey}
+              bookInput={bookInput}
+              setBookInput={setBookInput}
+            />
+          }
         ></Route>
         {!isLogin && (
           <Route

@@ -1,0 +1,56 @@
+.bookbox {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 2px solid #333;
+}
+
+.bookbox img {
+  height: 160px;
+  width: 120px;
+  margin: 10px;
+  margin-right: 50px;
+}
+
+.book-title {
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(99, 99, 95);
+  padding-bottom: 10px;
+  border-bottom: 1px solid;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.bookbox-right button {
+  cursor: pointer;
+  padding: 11px 20px;
+  color: rgb(99, 99, 95);
+  background-color: #c4bdab;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.bookbox-right button:hover {
+  background-color: rgb(173, 166, 150);
+}
+.blurb {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+@media (max-width: 800px) and (min-width: 450px) {
+  .bookbox {
+    width: 500px;
+  }
+}
+@media (max-width: 449px) {
+  .bookbox {
+    width: 300px;
+  }
+}
